@@ -1,5 +1,7 @@
 package opr.main.temp;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import javax.sql.DataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -14,11 +16,17 @@ public class StudentJDBCTemplate implements StudentDAO {
 		      this.dataSource = dataSource;
 		      this.jdbcTemplateObject = new JdbcTemplate(dataSource);
 		   }
-	   public void create(String name, Integer age) {
-	      String SQL = "insert into Student (name, age) values (?, ?)";
-	      Object[] args = {name,age.toString()};
-	      jdbcTemplateObject.update( SQL, args);
-	      System.out.println("Created Record Name = " + name + " Age = " + age);
+	   public void create(ArrayList<Student> stu) {
+		   String SQL = "insert into Student (name, age) values (?, ?)";
+		   for (Iterator iterator = stu.iterator(); iterator.hasNext();) {
+			Student student = (Student) iterator.next();
+			Object[] args = {student.getName(),student.getAge().toString()};
+		      jdbcTemplateObject.update( SQL, args);
+		      System.out.println("Created Record Name = " + student.getName() + " Age = " + student.getName());
+		}
+	      
+	      
+	     
 	      return;
 	   }
 	   public List<Student> getStudent(Integer id) {

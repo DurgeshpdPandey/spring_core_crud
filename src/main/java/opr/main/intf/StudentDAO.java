@@ -1,5 +1,6 @@
 package opr.main.intf;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -17,7 +18,7 @@ public interface StudentDAO {
      * This is the method to be used to create
      * a record in the Student table.
   */
-  public void create(String name, Integer age);
+  public void create(ArrayList<Student> stu);
   
   /** 
      * This is the method to be used to list down
